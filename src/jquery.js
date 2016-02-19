@@ -36,7 +36,14 @@ $(document).ready(function() {
     // }
   });
 
-
+  $("#get-location").click(function() {
+    var city = $("#city").val();
+    url = "http://api.ipinfodb.com/v3/ip-city/?";
+    apiKey = "key=&9bbc6089046815aeb5fe72d09ec0d9ea0807dcb7d82121d681d6&ip=185.53.227.70";
+    $.getJSON( url + apiKey, function( data ) {
+    console.log(data);
+    });
+  });
 
 
   $("#get-weather").click(function() {
@@ -48,6 +55,7 @@ $(document).ready(function() {
     console.log(data);
 
     $("#city-weather").html(data.name + "'s " + data.weather[0].description);
+    $("#city-temp").html(data.main.temp);
     $("#weather-icon").attr("src", "http://openweathermap.org/img/w/" + data.weather[0].icon +".png");
     });
   });
