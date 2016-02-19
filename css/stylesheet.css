@@ -6,7 +6,7 @@ body {
   radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
   radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
   background-color:#282828;
-  background-size:16px 16px;
+  background-size: 16px 16px;
 }
 
 #wrapper {
@@ -26,6 +26,7 @@ body {
   margin: 20px auto;
   width: 200px;
   height: 200px;
+  border: 3px solid white;
   /*border-radius: 50%;*/
   /*display: flex;
   align-items: center;
@@ -34,7 +35,7 @@ body {
 }
 
 #temperature {
-  font-family: 'Audiowide', cursive;
+  font-family: 'Audiowide', sans-serif;;
   text-align: center;
   margin: 0;
   position: absolute;
@@ -54,4 +55,27 @@ body {
 
 #weather-icon {
   display: inline-block;
+}
+
+#city {
+  width: 200px;
+  font-size: 16px;
+}
+
+button {
+    display: inline-block; /* display inline but have dimensions */
+    /*width: 110px;*/
+    cursor: pointer;
+    font-size: 16px;
+    background-color: orange;
+    border: 2px solid white;
+    color: white; /*text colour*/
+    padding: 5px 10px;
+    text-align: center;
+    text-shadow: 0 0 2px rgba(0,0,0,0.4); /*for readability*/
+}
+
+button:hover {
+    background-color: white;
+    color: #4CAF50; /* Green */
 }

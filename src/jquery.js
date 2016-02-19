@@ -21,25 +21,22 @@ $(document).ready(function() {
     updatetemp();
   });
 
-  $("#powersaving-on").click(function() {
-    thermostat.switchPowerSavingModeOn();
-    for(var i = thermostat.getCurrentTemperature(); i>25; i--) {
-      setTimeout(delayed, 1000);
-    }
-
-    function delayed () {
-      thermostat.down();
-      updatetemp();
-    }
-
-    $("#power-saving-status").html("ON");
-  });
-
-  $("#powersaving-off").click(function() {
-    thermostat.switchPowerSavingModeOff();
+  $("#powersaving").click(function() {
+    thermostat.switchPowerSavingMode();
     updatetemp();
-    $("#power-saving-status").html("OFF");
+    // if (thermostat.powerSavingMode) {
+    //   for(var i = thermostat.getCurrentTemperature(); i>25; i--) { thermostat.down(); }
+    //   updatetemp();
+    //   $("#powersaving").css("background-color", "green");
+    //   $("#powersaving").html("PSM ON");
+    // }
+    // else {
+    //   $("#powersaving").css("background-color", "red");
+    //   $("#powersaving").html("PSM OFF");
+    // }
   });
+
+
 
 
   $("#get-weather").click(function() {
@@ -61,10 +58,19 @@ $(document).ready(function() {
     $("#temperature").html(thermostat.getCurrentTemperature());
     $("#temperature").css({"font-size": fontsize + "px"});
     $("#tempbox").css({"background-color": color});
+
+    if (thermostat.powerSavingMode) {
+      for(var i = thermostat.getCurrentTemperature(); i>25; i--) { thermostat.down(); }
+      // updatetemp();
+      $("#powersaving").css("background-color", "green");
+      $("#powersaving").html("PSM ON");
+    }
+    else {
+      $("#powersaving").css("background-color", "red");
+      $("#powersaving").html("PSM OFF");
+    }
   }
   var map;
-
-
 
   function updateMap(coordlon, coordlat) {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -75,3 +81,24 @@ $(document).ready(function() {
 
 });
 //2643743
+// $("#powersaving-on").click(function() {
+//   thermostat.switchPowerSavingModeOn();
+//   for(var i = thermostat.getCurrentTemperature(); i>25; i--) {
+//     // setInterval(delayed, 1000);
+//     thermostat.down();
+//     updatetemp();
+//   }
+//
+//   // function delayed () {
+//     // thermostat.down();
+//     // updatetemp();
+//   // }
+//
+//   $("#power-saving-status").html("ON");
+// });
+//
+// $("#powersaving-off").click(function() {
+//   thermostat.switchPowerSavingModeOff();
+//   updatetemp();
+//   $("#power-saving-status").html("OFF");
+// });
