@@ -53,12 +53,12 @@ Thermostat.prototype.resetTemperature = function() {
 
 Thermostat.prototype.energyUsage = function() {
   if (this.temperature < this.MEDIUM_ENERGY_USAGE_LIMIT) {
-    return 'goldenrod'; // 'low-usage';
+    return '#00a300'; // 'low-usage';
   }
-  if (this.temperature >= this.MEDIUM_ENERGY_USAGE_LIMIT && this.temperature <= this.MAX_LIMIT_PSM_ON) {
-    return 'green'; //medium-usage';
+  if (this.temperature >= this.MEDIUM_ENERGY_USAGE_LIMIT && this.temperature < this.MAX_LIMIT_PSM_ON) {
+    return '#ffc40d'; //medium-usage';
   }
-  return 'red'; //'high-usage';
+  return '#ee1111'; //'high-usage';
 };
 
 // Thermostat.prototype.switchPowerSavingModeOn = function() {

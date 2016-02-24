@@ -46,12 +46,14 @@ $(document).ready(function() {
   });
 
 
-  $("#get-weather").click(function() {
+  $("#select-city").submit(function() {
+    event.preventDefault();
     var city = $("#city").val();
     url = "http://api.openweathermap.org/data/2.5/weather?q=";
     apiKey = "&appid=44db6a862fba0b067b1930da0d769e98&units=metric";
     $.getJSON( url + city + apiKey, function( data ) {
     updateMap(data.coord.lon, data.coord.lat);
+
     console.log(data);
 
     $("#city-weather").html(data.name + "'s " + data.weather[0].description);
@@ -63,9 +65,14 @@ $(document).ready(function() {
   function updatetemp () {
     fontsize = 10 + 4 * thermostat.getCurrentTemperature();
     color = thermostat.energyUsage();
-    $("#temperature").html(thermostat.getCurrentTemperature());
+    // $("#temperature").hide("slide", { direction: "down" }, 100);
+    $("#temperature").hide();
     $("#temperature").css({"font-size": fontsize + "px"});
     $("#tempbox").css({"background-color": color});
+    // $("#temperature").slideDown(200);
+    $("#temperature").show("slide", { direction: "up" }, 150);
+    $("#temperature").html(thermostat.getCurrentTemperature());
+
 
     if (thermostat.powerSavingMode) {
       for(var i = thermostat.getCurrentTemperature(); i>25; i--) { thermostat.down(); }
@@ -88,25 +95,18 @@ $(document).ready(function() {
   }
 
 });
-//2643743
-// $("#powersaving-on").click(function() {
-//   thermostat.switchPowerSavingModeOn();
-//   for(var i = thermostat.getCurrentTemperature(); i>25; i--) {
-//     // setInterval(delayed, 1000);
-//     thermostat.down();
-//     updatetemp();
-//   }
+
+
+// var varCounter = 0;
+// var varName = function(){
+//      if(varCounter <= 10) {
+//           varCounter++;
+//           /* your code goes here */
+//      } else {
+//           clearInterval(varName);
+//      }
+// };
 //
-//   // function delayed () {
-//     // thermostat.down();
-//     // updatetemp();
-//   // }
-//
-//   $("#power-saving-status").html("ON");
-// });
-//
-// $("#powersaving-off").click(function() {
-//   thermostat.switchPowerSavingModeOff();
-//   updatetemp();
-//   $("#power-saving-status").html("OFF");
+// $(document).ready(function(){
+//      setInterval(varName, 10000);
 // });
